@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/agents/greenCircle.png" type="Texture" id=1]
+[ext_resource path="res://assets/agents/redCircle.png" type="Texture" id=2]
+[ext_resource path="res://scenes/agents/RandomMovement.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.0
+
+[node name="Cell" type="Node2D"]
+
+[node name="RandomMovement" type="KinematicBody2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RandomMovement"]
+shape = SubResource( 1 )
+
+[node name="redCircle" type="Sprite" parent="RandomMovement"]
+texture = ExtResource( 2 )
+
+[node name="greenCircle" type="Sprite" parent="RandomMovement"]
+visible = false
+texture = ExtResource( 1 )
