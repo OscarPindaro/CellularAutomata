@@ -1,18 +1,15 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
 var speed = 100
 var currVelocity = Vector2(1,0) *speed
-# var b = "text"
 var rng = RandomNumberGenerator.new()
 var arrowSprite : Sprite
 
-signal collisionSignal
+var points : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	arrowSprite = get_node("arrow")
-	connect("collisionSignal", get_parent(), "assignReward")
+	arrowSprite = $arrow
 
 
 func _process(delta):
@@ -22,12 +19,12 @@ func _process(delta):
 	move_and_slide(currVelocity)
 	allineSpriteToVector(currVelocity)
 	if(get_slide_count() > 0):
-		emit_signal("collisionSignal")
+		assignReward()
 	
 
 func allineSpriteToVector(vector : Vector2):
 	arrowSprite.rotation_degrees =rad2deg(currVelocity.angle()+PI/2)
 	
+func assignReward():
+	points -= 10	
 	
-	
-
